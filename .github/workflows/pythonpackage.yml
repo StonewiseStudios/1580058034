@@ -1,0 +1,120 @@
+name: Python package
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: debian-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [2.7, 3.5, 3.6, 3.7]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v1
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Lint with flake8
+      run: |
+        pip install flake8
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    - name: Test with pytest
+      run: |
+        pip install pytest
+        pytest
+- name: Upload artifact
+  uses: actions/upload-artifact@v1.0.0
+  with:
+    # Artifact name
+    name: 
+    # Directory containing files to upload
+    path: 
+- name: First interaction
+  uses: actions/first-interaction@v1.0.0
+  with:
+    # Token for the repo. Can be passed in using {{ secrets.GITHUB_TOKEN }}
+    repo-token: 
+    # Comment to post on an individuals first issue
+    issue-message: # optional
+    # Comment to post on an individuals first pull request
+    pr-message: # optional
+- name: Git-Crypt Unlock
+  uses: zemuldo/git-crypt-unlock@v1.0
+- name: setup-git-credentials
+  uses: fusion-engineering/setup-git-credentials@v2
+#5.93584176368708638094e-1
+#-1.04679496611550915119e+0
+#1.39702011392890235175e-1
+#8.34869213203726201478e-1
+#-1.00339215367015865965e+0
+#5.81293910743260866525e-1
+#-8.01536158657006336803e-1
+#6.71644349522591659063e-3
+#-4.90548914107303002385e-1
+#-1.10838823833635458094e+0
+#6.73290806947897779722e-1
+#-7.77948171580826325355e-2
+#-6.61145972968460671204e-1
+#8.13759024657269569580e-1
+#1.22850919808222047713e+0
+#-1.07788174867397978929e+0
+#4.56033128979704160955e-1
+#8.90467848324046351571e-1
+#-1.61467767789587512972e+0
+#-1.07132920748230464625e+0
+#-1.48557511674223974296e+0
+#-7.00597869522630367634e-1
+#5.06896165596100956030e-1
+#1.91057964595532125962e+0
+#-2.49156171599813003326e+0
+#-2.84659082133132512737e-1
+#3.73634996940686525679e-1
+#-7.03595416912779714202e-1
+#-2.25416169238595448521e-1
+#4.48407208029136916672e-1
+#-8.82784789240967704416e-1
+#1.02487593448382185990e+0
+#1.66896375694464937922e+0
+#-1.95862973964239928115e+0
+#2.06544327678352201971e+0
+#-4.99856103622289882349e-1
+#-9.40707512173303284087e-1
+#-3.07297517602645009482e-1
+#-1.67205843904662554422e+0
+#-4.13122504335765416972e-1
+#2.08327554025932126791e+0
+#1.03322951173568891581e-1
+#-7.71480363370527152944e-3
+#2.11446213288994211421e-1
+#4.09766332333966198931e-1
+#9.66325044483929834760e-2
+#9.65678349762719823168e-1
+#-5.53145728673734682346e-1
+#1.63304184488659354102e+0
+#2.09455561536808687606e+0
+#1.64081572478903603418e+0
+#-1.10167591228050021357e+0
+#1.59221529749590273717e+0
+#1.31197302573980700835e+0
+#8.79163472723655581298e-1
+#8.16887342090977908171e-1
+#1.27102303167531682782e+0
+#-8.67560774548251534277e-1
+#-2.00873862178198336892e+0
+#-5.75091822790988582703e-1
+#-4.92021939310857969740e-1
+#-1.15298894733439105664e+0
+#-3.36003755944868032213e-1
+#8.75000814988463049282e-1
+#Timestamp: 2020-01-26 17:54:07 UTC
+#[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
